@@ -105,6 +105,346 @@
           }
         }
       }
+    },
+    "user-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/user-app",
+      "sourceRoot": "projects/user-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/user-app",
+            "index": "projects/user-app/src/index.html",
+            "main": "projects/user-app/src/main.ts",
+            "polyfills": "projects/user-app/src/polyfills.ts",
+            "tsConfig": "projects/user-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/user-app/src/favicon.ico",
+              "projects/user-app/src/assets"
+            ],
+            "styles": [
+              "projects/user-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/user-app/src/environments/environment.ts",
+                  "with": "projects/user-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "user-app:build:production"
+            },
+            "development": {
+              "browserTarget": "user-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "user-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/user-app/src/test.ts",
+            "polyfills": "projects/user-app/src/polyfills.ts",
+            "tsConfig": "projects/user-app/tsconfig.spec.json",
+            "karmaConfig": "projects/user-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/user-app/src/favicon.ico",
+              "projects/user-app/src/assets"
+            ],
+            "styles": [
+              "projects/user-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "pizza-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/pizza-app",
+      "sourceRoot": "projects/pizza-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/pizza-app",
+            "index": "projects/pizza-app/src/index.html",
+            "main": "projects/pizza-app/src/main.ts",
+            "polyfills": "projects/pizza-app/src/polyfills.ts",
+            "tsConfig": "projects/pizza-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/pizza-app/src/favicon.ico",
+              "projects/pizza-app/src/assets"
+            ],
+            "styles": [
+              "projects/pizza-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/pizza-app/src/environments/environment.ts",
+                  "with": "projects/pizza-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "pizza-app:build:production"
+            },
+            "development": {
+              "browserTarget": "pizza-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "pizza-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/pizza-app/src/test.ts",
+            "polyfills": "projects/pizza-app/src/polyfills.ts",
+            "tsConfig": "projects/pizza-app/tsconfig.spec.json",
+            "karmaConfig": "projects/pizza-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/pizza-app/src/favicon.ico",
+              "projects/pizza-app/src/assets"
+            ],
+            "styles": [
+              "projects/pizza-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "ingredient-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/ingredient-app",
+      "sourceRoot": "projects/ingredient-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ingredient-app",
+            "index": "projects/ingredient-app/src/index.html",
+            "main": "projects/ingredient-app/src/main.ts",
+            "polyfills": "projects/ingredient-app/src/polyfills.ts",
+            "tsConfig": "projects/ingredient-app/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ingredient-app/src/favicon.ico",
+              "projects/ingredient-app/src/assets"
+            ],
+            "styles": [
+              "projects/ingredient-app/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/ingredient-app/src/environments/environment.ts",
+                  "with": "projects/ingredient-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ingredient-app:build:production"
+            },
+            "development": {
+              "browserTarget": "ingredient-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ingredient-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ingredient-app/src/test.ts",
+            "polyfills": "projects/ingredient-app/src/polyfills.ts",
+            "tsConfig": "projects/ingredient-app/tsconfig.spec.json",
+            "karmaConfig": "projects/ingredient-app/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/ingredient-app/src/favicon.ico",
+              "projects/ingredient-app/src/assets"
+            ],
+            "styles": [
+              "projects/ingredient-app/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    },
+    "core-library": {
+      "projectType": "library",
+      "root": "projects/core-library",
+      "sourceRoot": "projects/core-library/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/core-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/core-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/core-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/core-library/src/test.ts",
+            "tsConfig": "projects/core-library/tsconfig.spec.json",
+            "karmaConfig": "projects/core-library/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "pizzeria-frontend"
