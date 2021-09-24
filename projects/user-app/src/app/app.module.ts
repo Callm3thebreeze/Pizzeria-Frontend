@@ -6,7 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Router, Routes } from '@angular/router';
 import { AuthorizationObserver } from 'projects/core-library/src/lib/services/authorizationobserver';
 import { DecoratorService } from 'projects/core-library/src/lib/services/decoratorservice';
-import { INTERCEPTORS } from 'projects/core-library/src/lib/services/interceptors';
+import { INTERCEPTORS } from 'core-library';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
