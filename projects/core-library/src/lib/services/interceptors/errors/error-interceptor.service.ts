@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class NotFoundInterceptorService implements HttpInterceptor {
+export class ErrorInterceptorService implements HttpInterceptor {
 
   constructor(private router: Router) {}
 
@@ -17,10 +17,10 @@ export class NotFoundInterceptorService implements HttpInterceptor {
     return next.handle(request).pipe( tap(() => {},
     (err: any) => {
       if (err instanceof HttpErrorResponse){
-        if (err.status !== 404) {
+        if (err.status !== 500) {
           return;
         }
-        this.router.navigate(['not-found']);
+        this.router.navigate(['error']);
       }
     }));
   }
