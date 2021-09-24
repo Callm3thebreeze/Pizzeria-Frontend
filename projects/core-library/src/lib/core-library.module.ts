@@ -3,6 +3,7 @@ import { MenuComponent } from './components/menu/menu.component';
 
 
 
+
 @NgModule({
   declarations: [
     MenuComponent
@@ -11,7 +12,7 @@ import { MenuComponent } from './components/menu/menu.component';
   ],
   exports: [
     MenuComponent
-  ]
+  ]    
 })
 
 export class CoreLibraryModule { }
