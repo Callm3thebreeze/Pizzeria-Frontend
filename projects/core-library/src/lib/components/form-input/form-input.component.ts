@@ -1,15 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-form-input',
+  selector: 'lib-form-input',
   templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss']
+  styleUrls: ['./form-input.component.css']
 })
-export class FormInputComponent implements OnInit {
+export class FormInputComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  @Input() type: String="text"
+  @Input() label: String=""  
+  @Input() placeholder: String=""  
+  @Input() formName: String=""
 
 }

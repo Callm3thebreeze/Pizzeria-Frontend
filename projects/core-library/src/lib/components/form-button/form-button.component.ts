@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-form-button',
+  selector: 'lib-form-button',
   templateUrl: './form-button.component.html',
-  styleUrls: ['./form-button.component.scss']
+  styleUrls: ['./form-button.component.css']
 })
-export class FormButtonComponent implements OnInit {
+export class FormButtonComponent {
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+@Input() type: String="submit"
 
 }
