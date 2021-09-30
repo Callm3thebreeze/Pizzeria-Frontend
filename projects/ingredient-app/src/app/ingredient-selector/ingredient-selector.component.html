@@ -1,0 +1,23 @@
+<p>
+  ingredient-selector works!
+</p>
+
+<table class = "table table-striped" border="1">
+  <thead>
+      <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Price</th>
+      </tr>
+  </thead>
+  <!-- El bucle recorre cada usuario de users-->
+  <!-- Este archivo html está asociado a su respectivo .ts -->
+  <!-- users es una propiedad definida en el .ts users: User[]-->
+  <tbody>
+      <tr *ngFor = "let i of ingredients">
+          <!-- {{}} Es interpolación para acceder a los campos -->
+          <td>{{i.id}}</td>
+          <td>{{i.name}}</td>
+          <td>{{i.price}}</td>
+  </tbody>
+</table>
