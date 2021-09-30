@@ -1,0 +1,14 @@
+<div>
+  <h2>Create User</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <lib-form-input formControlName="firstName" type="text" placeholder="First Name">
+    </lib-form-input>
+    <lib-form-input formControlName="lastName" type="text" placeholder="Last Name">
+    </lib-form-input>
+    <lib-form-input formControlName="email" type="text" placeholder="Email">
+    </lib-form-input>
+    <lib-form-input formControlName="password" type="password" placeholder="Password">
+    </lib-form-input>
+    <lib-form-button type="submit"></lib-form-button>
+  </form>
+</div>

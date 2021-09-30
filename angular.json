@@ -415,6 +415,7 @@
         }
       }
     },
+    
     "core-library": {
       "projectType": "library",
       "root": "projects/core-library",

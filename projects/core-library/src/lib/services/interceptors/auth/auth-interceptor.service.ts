@@ -9,6 +9,7 @@ import { DecoratorService } from '../../decoratorservice';
 })
 
 export class AuthInterceptorService implements HttpInterceptor{
+  
 
   constructor() { }
 
@@ -16,7 +17,7 @@ export class AuthInterceptorService implements HttpInterceptor{
 
       const AuthorizationObserver = DecoratorService.getAuthorizationObserver();
       if (AuthorizationObserver.addToken){
-          const modified = req.clone({setHeaders: { 'x-Custom-Header': 'x'}});
+          const modified = req.clone({setHeaders: { 'Authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiJzb2Z0dGVrSldUIiwic3ViIjoiamFqYWoiLCJhdXRob3JpdGllcyI6WyJVU0VSIl0sImlhdCI6MTYzMjkxMzQwNiwiZXhwIjoxNjMzMjczNDA2fQ.XygJ2X5s27-fBz1bM8DPxmt72-IKFEjyB8X3pLyEsu26oDrl6W4lVktRlOUFV9CfbNDKdUmpyhHUlMaOImhXJw'}});
           AuthorizationObserver.addToken = false;
           return next.handle(modified);
       }      

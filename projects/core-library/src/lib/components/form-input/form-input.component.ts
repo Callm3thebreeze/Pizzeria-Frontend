@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class FormInputComponent {
 
-  @Input() type: String="text"
+  @Input() type: 'text' | 'email' | 'password' = 'text';
   @Input() label: String=""  
   @Input() placeholder: String=""  
   @Input() formName: String=""
