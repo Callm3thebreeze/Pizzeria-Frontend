@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserLogin } from '../logininterface';
 import { HttpUserService } from '../services/userservices';
+import { IndexeddbService } from 'projects/core-library/src/public-api';
 
 @Component({
   selector: 'app-login',
@@ -11,36 +12,31 @@ import { HttpUserService } from '../services/userservices';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private httpUserService: HttpUserService, private router: Router) {
-
+  constructor(private userservice: HttpUserService, private router: Router, private indexeddbService: IndexeddbService) { 
+    
   }
+
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
-  userLogin: UserLogin = {
-    email: '',
-    password: ''
-  }
-
+  
 
   onSubmit() {
-    /*this.userLogin.email = this.userForm.get('email')?.value;
-    this.userLogin.password = this.userForm.get('password')?.value;
-    const observer = this.httpUserService.login(this.userLogin);
+    const observer = this.userservice.login(this.loginForm.value);
     const unsuscribe = observer.subscribe((data) => {
-      this.userForm.reset();
       if(data){
-        localStorage.setItem('user',JSON.stringify(data));
-        this.router.navigate(["login"]);
-      }*/
+        this.indexeddbService.removeUser();
+        this.indexeddbService.addUser(data);
+        this.router.navigate(["user/register"]);
+      }
+    });
   }
   onRedirect(){
-    this.router.navigate(["register"]);
+    this.router.navigate(["user/register"]);
   }
-
+  
   ngOnInit(): void {
   }
-
 
 }

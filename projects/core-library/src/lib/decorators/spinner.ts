@@ -1,4 +1,3 @@
-import { finalize } from 'rxjs/operators'
 import { InjectorDecorator } from './injector';
 
 

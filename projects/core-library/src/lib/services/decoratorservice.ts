@@ -6,8 +6,8 @@ export class DecoratorService {
 
     private static authorizationObserver: AuthorizationObserver;
     
-    public constructor(authorizatrionObserver:AuthorizationObserver){
-        DecoratorService.authorizationObserver = authorizatrionObserver
+    public constructor(authorizationObserver:AuthorizationObserver){
+        DecoratorService.authorizationObserver = authorizationObserver
     }
 
 

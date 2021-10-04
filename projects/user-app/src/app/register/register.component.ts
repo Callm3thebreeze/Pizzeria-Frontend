@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpUserService } from '../services/userservices';
-//import indexeddb from 'projects/core-library/src/lib/services/indexeddb';
+import { IndexeddbService } from 'projects/core-library/src/lib/services/indexeddb.service';
 import { User } from '../userinterface';
 
 
@@ -13,7 +13,6 @@ import { User } from '../userinterface';
 })
 export class RegisterComponent {
 
-
   userForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required),
@@ -22,23 +21,27 @@ export class RegisterComponent {
     policies: new FormControl(false, Validators.requiredTrue),
     consent: new FormControl(false, Validators.requiredTrue),
   });
-  user: User = {
+  user: User={
     name: '',
-    lastname: '',
+    lastName: '',
     email: '',
     password: ''
   }
-  constructor(private httpUserService: HttpUserService, private router: Router, private formBuilder: FormBuilder) {
+  
+  
+  constructor(private HttpUserService: HttpUserService, private router: Router, private formBuilder: FormBuilder, private indexeddbService: IndexeddbService) {
   }
   onSubmit() {
     if (this.userForm.valid) {
       this.user.name = this.userForm.get("firstName")?.value;
-      this.user.lastname = this.userForm.get("lastName")?.value;
+      this.user.lastName = this.userForm.get("lastName")?.value;
       this.user.email = this.userForm.get("email")?.value;
       this.user.password = this.userForm.get("password")?.value;
-      const observer = this.httpUserService.addUser(this.user);
+      const observer = this.HttpUserService.addUser(this.user);
       const unsuscribe = observer.subscribe((data) => {
-        this.router.navigate(["login"]);
+        this.indexeddbService.removeUser();
+        this.indexeddbService.addUser(data);
+        this.router.navigate(["user/login"]);
       });
     }
   }

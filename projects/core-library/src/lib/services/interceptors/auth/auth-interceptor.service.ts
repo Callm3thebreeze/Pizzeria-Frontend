@@ -1,8 +1,8 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { DecoratorService } from "projects/core-library/src/public-api"; 
-import { Observable } from "rxjs/internal/Observable";
+import { Observable } from "rxjs";
 import { UserDTO } from "../../../user/userDTO";
+import { DecoratorService } from "../../decoratorservice";
 import { IndexeddbService } from "../../indexeddb.service";
 
 
@@ -16,11 +16,11 @@ export class AuthInterceptorService implements HttpInterceptor {
     }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        const autorizationObserver = DecoratorService.getAuthorizationObserver();
-        if (autorizationObserver.addToken) {
+        const authorizationObserver = DecoratorService.getAuthorizationObserver();
+        if (authorizationObserver.addToken) {
             let modified =null;
             modified =(async ()=>await this.setAuthorization(req));
-            autorizationObserver.addToken = false;
+            authorizationObserver.addToken = false;
             //TODO: descomentar
             return next.handle(/*modified*/req);
         }

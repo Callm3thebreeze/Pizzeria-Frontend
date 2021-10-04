@@ -3,8 +3,9 @@ import { HttpClient } from '@angular/common/http'
 import { User } from '../userinterface';
 import { environment } from '../../environments/environment'
 import { UserLogin } from '../logininterface';
-import { UserDTO } from 'projects/core-library/src/lib/user/userDTO';
+import { Authorize } from 'core-library';
 import { Observable } from 'rxjs/internal/Observable';
+import { UserDTO } from 'core-library';
 
 @Injectable({providedIn: 'root'})
 export class HttpUserService {
@@ -14,6 +15,8 @@ export class HttpUserService {
   addUser(body: User):Observable<UserDTO> {
     return <Observable<UserDTO>> this.http.post(`${environment.url + "/api/v1/users"}`, body);
   }
+
+  @Authorize()
   login(body:UserLogin):Observable<UserDTO>{
     return <Observable<UserDTO>> this.http.post(`${environment.url + "/api/v1/users/login"}`, body)
   }

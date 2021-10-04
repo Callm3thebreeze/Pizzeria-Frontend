@@ -1,14 +1,14 @@
 <div class="containerLogin" >
-    <span class="titleLogin">
-        <span class="titleLogin2">Iniciar sesión</span>
-      </span>
-    <form class="login" [formGroup]="loginForm">
-      <lib-form-input  [formGroup]="loginForm" name="email" type="text" placeholder="Tu Email * ">
-      </lib-form-input>
-      <lib-form-input  [formGroup]="loginForm" name="password" type="password" placeholder="Contraseña *">
-      </lib-form-input>
-      <lib-form-button type="submit" text="Empezar pedido" (BtnClickEmt)="onSubmit()" ></lib-form-button>
-    </form>
-    <span class="register">¿Aún no estás registrado?</span>
-    <lib-form-button type="submit" text="Registrarme" (BtnClickEmt)="onRedirect()" ></lib-form-button>
-  </div>
+  <span class="titleLogin">
+      <span class="titleLogin2">Iniciar sesión</span>
+    </span>
+  <form class="login" [formGroup]="loginForm">
+    <lib-form-input  [formGroup]="loginForm" name="email" type="text" placeholder="Tu Email * ">
+    </lib-form-input>
+    <lib-form-input  [formGroup]="loginForm" name="password" type="password" placeholder="Contraseña *">
+    </lib-form-input>
+    <lib-form-button type="submit" text="Empezar pedido" (BtnClickEmt)="onSubmit()" ></lib-form-button>
+  </form>
+  <span class="register">¿Aún no estás registrado?</span>
+  <lib-form-button type="submit" text="Registrarme" (BtnClickEmt)="onRedirect()" ></lib-form-button>
+</div>

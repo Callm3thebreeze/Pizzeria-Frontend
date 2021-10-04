@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NotfoundInterceptorService } from './notfound-interceptor.service';
+import { NotFoundInterceptorService } from './notfound-interceptor.service';
 
 describe('NotfoundInterceptorService', () => {
-  let service: NotfoundInterceptorService;
+  let service: NotFoundInterceptorService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NotfoundInterceptorService);
+    service = TestBed.inject(NotFoundInterceptorService);
   });
 
   it('should be created', () => {
