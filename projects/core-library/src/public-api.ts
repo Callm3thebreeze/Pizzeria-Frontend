@@ -12,6 +12,6 @@ export * from './lib/decorators';
 export * from './lib/services/interceptors';
 export * from './lib/services/authorizationobserver';
 export * from './lib/services/decoratorservice';
-//export * from './lib/services/indexeddb';
+export * from './lib/components/spinner/spinner.component'
 
 

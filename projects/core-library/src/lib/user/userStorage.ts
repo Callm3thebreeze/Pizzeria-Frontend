@@ -1,4 +1,4 @@
-import {UserDTO} from './userdto'
+import {UserDTO} from './userDTO'
 const key = "user";
 class UserStorage{
     private userDTO: UserDTO|any ={};
