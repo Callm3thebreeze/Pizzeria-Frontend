@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { del, get, set } from 'idb-keyval';
-import { UserDTO } from '../user/userdto';
 
 @Injectable({
   providedIn: 'root'
@@ -9,21 +8,12 @@ import { UserDTO } from '../user/userdto';
 export class IndexeddbService{
   private  key: string = 'user';
 
-  async addUser( data: UserDTO) {
+  async addUser( data: any) {
      await set(this.key, data);
   }
 
-  async getUser(): Promise<UserDTO> {
-    // return await get(this.key);
-    //TODO: falta implementar el token
-    return {
-      id: 'x',
-      name: 'pepe',
-      lastName: 'joseito',
-      email: 'joseito@a.com',
-      type: 'bearer',
-      token: ''
-    }
+  async getUser() {
+    return await get(this.key);
   }
 
   async removeUser() {
