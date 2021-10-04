@@ -1,27 +1,29 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { DecoratorService } from '../../decoratorservice';
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { DecoratorService } from "core-library";
+import { Observable } from "rxjs/internal/Observable";
+import { UserDTO } from "../../../user/userdto";
+import { IndexeddbService } from "../../indexeddb.service";
 
 
-@Injectable({
-  providedIn: 'root' 
-})
+@Injectable({ providedIn: 'root' })
+export class HttpInterceptorAuth implements HttpInterceptor {
+    constructor(private indexeddbService: IndexeddbService){
+    }
+    private async setAuthorization(req: HttpRequest<any>): Promise<HttpRequest<any>> {
+        const userDTO: UserDTO = await this.indexeddbService.getUser();
+        return req.clone({ setHeaders: { 'Authorization': `${userDTO.type} ${userDTO.token}` } });
+    }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-export class AuthInterceptorService implements HttpInterceptor{
-
-  constructor() { }
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-
-      const AuthorizationObserver = DecoratorService.getAuthorizationObserver();
-      if (AuthorizationObserver.addToken){
-          const modified = req.clone({setHeaders: { 'x-Custom-Header': 'x'}});
-          AuthorizationObserver.addToken = false;
-          return next.handle(modified);
-      }      
-
-      return next.handle(req);
-
-  }
+        const autorizationObserver = DecoratorService.getAuthorizationObserver();
+        if (autorizationObserver.addToken) {
+            let modified =null;
+            modified =(async ()=>await this.setAuthorization(req));
+            autorizationObserver.addToken = false;
+            //TODO: descomentar
+            return next.handle(/*modified*/req);
+        }
+        return next.handle(req);
+    }
 }
