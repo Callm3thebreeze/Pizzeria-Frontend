@@ -1,29 +1,23 @@
-import { openDB } from "idb";
+import { Injectable } from '@angular/core';
+import { del, get, set } from 'idb-keyval';
 
-export function createDB(database: string, ...stores: string[]) {
-    openDB(database, 1, {
-        upgrade(db) {
-            stores.forEach(
-                store => db.createObjectStore(store)
-            );
-        },
-    });
-}
+@Injectable({
+  providedIn: 'root'
+})
 
-export async function addItem(database: string, store: string, data: any, key: string) {
-    const db = await openDB(database, 1);
-    db.add(store, data, key).catch(err => console.log('Error:', err));
-    db.close();
-}
+class IdbService{
+  private  key: string = 'user';
 
-export async function getItem(database: string, store: string, key: string) {
-    const db = await openDB(database, 1);
-    db.get(store, key).then(console.log);
-    db.close();
-}
+  async addUser( data: any) {
+     await set(this.key, data);
+  }
 
-export async function clearStore(database: string, store: string) {
-    const db = await openDB(database, 1);
-    db.clear(store);
-    db.close();
+  async getUser() {
+    return await get(this.key);
+  }
+
+  async removeUser() {
+    await del(this.key);
+  }
 }
+export default new IdbService;
