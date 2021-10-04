@@ -1,33 +1,29 @@
-import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { DecoratorService } from '../../decoratorservice';
-import { UserDTO } from '../../../user/userDTO';
-import indexeddb from '../../indexeddb';
-
-@Injectable({
-  providedIn: 'root'
-})
-
-export class AuthInterceptorService implements HttpInterceptor {
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { DecoratorService } from "projects/core-library/src/public-api"; 
+import { Observable } from "rxjs/internal/Observable";
+import { UserDTO } from "../../../user/userdto";
+import { IndexeddbService } from "../../indexeddb.service";
 
 
-  constructor() {
-  }
-  private async setAuthorization(req: HttpRequest<any>): Promise<HttpRequest<any>> {
-    const userDTO: UserDTO = await indexeddb.getItem('TokenDB', 'User', 'user').then();
-    return req.clone({ setHeaders: { 'Authorization': `${userDTO.type} ${userDTO.token}` } });
-  }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
-    const autorizationObserver = DecoratorService.getAuthorizationObserver();
-    if (autorizationObserver.addToken) {
-      let modified = null;
-      modified = (async () => await this.setAuthorization(req));
-      autorizationObserver.addToken = false;
-      //TODO: descomentar
-      return next.handle(/*modified*/req);
+@Injectable({ providedIn: 'root' })
+export class HttpInterceptorAuth implements HttpInterceptor {
+    constructor(private indexeddbService: IndexeddbService){
     }
-    return next.handle(req);
-  }
+    private async setAuthorization(req: HttpRequest<any>): Promise<HttpRequest<any>> {
+        const userDTO: UserDTO = await this.indexeddbService.getUser();
+        return req.clone({ setHeaders: { 'Authorization': `${userDTO.type} ${userDTO.token}` } });
+    }
+    intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        const autorizationObserver = DecoratorService.getAuthorizationObserver();
+        if (autorizationObserver.addToken) {
+            let modified =null;
+            modified =(async ()=>await this.setAuthorization(req));
+            autorizationObserver.addToken = false;
+            //TODO: descomentar
+            return next.handle(/*modified*/req);
+        }
+        return next.handle(req);
+    }
 }

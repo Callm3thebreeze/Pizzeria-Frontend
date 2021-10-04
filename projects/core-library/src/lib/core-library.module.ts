@@ -3,6 +3,7 @@ import { FormButtonComponent } from './components/form-button/form-button.compon
 import { FormInputComponent } from './components/form-input/form-input.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 
@@ -12,7 +13,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MenuComponent,
     FormButtonComponent,
     FormInputComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpinnerComponent
 
   ],
   imports: [
@@ -21,7 +23,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MenuComponent,
     FormButtonComponent,
     FormInputComponent,
-    NavbarComponent
+    NavbarComponent,
+    SpinnerComponent
   ]    
 })
 
