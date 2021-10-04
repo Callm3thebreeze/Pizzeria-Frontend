@@ -1,13 +1,13 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { DecoratorService } from "core-library";
+import { DecoratorService } from "projects/core-library/src/public-api";
 import { Observable } from "rxjs/internal/Observable";
 import { UserDTO } from "../../../user/userdto";
 import { IndexeddbService } from "../../indexeddb.service";
 
 
 @Injectable({ providedIn: 'root' })
-export class HttpInterceptorAuth implements HttpInterceptor {
+export class AuthInterceptorService implements HttpInterceptor {
     constructor(private indexeddbService: IndexeddbService){
     }
     private async setAuthorization(req: HttpRequest<any>): Promise<HttpRequest<any>> {
